@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* === BASE STYLES === */
+/* This automatically applies your background, text colors, and fonts */
+@layer base {
+  body {
+    background-color: #000000; /* Pure deep black background */
+    color: #e2e8f0; /* Soft slate color to prevent eye strain */
+    font-family: var(--font-inter), sans-serif; /* Inter for all normal paragraphs */
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit), sans-serif; /* Outfit for all headings */
+    color: #ffffff; /* Crisp white for titles */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* === CUSTOM UTILITIES === */
+/* Used to hide the ugly scrollbar on your About Me folder tabs */
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+/* =========================================
+   LIGHT MODE OVERRIDES (TAILWIND BREAKER)
+========================================= */
+
+/* 1. Force the main body text to dark slate */
+.light-theme,
+.light-theme body {
+  color: #0f172a !important; 
+}
+
+/* 2. Override Tailwind's strict white text */
+.light-theme .text-white {
+  color: #0f172a !important;
+}
+
+/* 3. Override Tailwind's gray text colors */
+.light-theme .text-zinc-600,
+.light-theme .text-zinc-400,
+.light-theme .text-zinc-300,
+.light-theme .text-zinc-200 {
+  color: #29303b !important;
+}
+
+/* 4. Frosted glass backgrounds (Navbar, OJT pill) turn to frosted white */
+.light-theme .bg-black\/50,
+.light-theme .bg-black\/30 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 5. The dark circle behind your profile picture turns to a clean light-gray */
+.light-theme .bg-zinc-800 {
+  background-color: #e2e8f0 !important;
+}
+
+/* 6. The circular spinning profile text turns dark */
+.light-theme .fill-zinc-400\/50 {
+  fill: rgba(15, 23, 42, 0.6) !important;
+}
+
+/* =========================================
+   PROTECTED ELEMENTS (DO NOT CHANGE THESE)
+========================================= */
+
+/* Guarantee the "Download CV" button text stays pure white! */
+.light-theme .bg-sky-500 {
+  color: #ffffff !important;
+}
+
+/* Keep the pulsing OJT dot green! */
+.light-theme .bg-emerald-400,
+.light-theme .bg-emerald-500 {
+  background-color: #10b981 !important;
 }
