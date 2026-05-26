@@ -21,7 +21,7 @@ const projectsData = [
     color: "from-indigo-900 to-zinc-900",
     desc: "A custom social platform combining a Discord-style UI layout with Facebook-inspired social networking features.",
     tech: ["React", "FastAPI", "WebSockets"],
-    repo: "https://github.com/acielace/LinkUp-placeholder" 
+    repo: "https://github.com/acielace/DiscordClone---Frontend" 
   },
   {
     id: "timberman",
