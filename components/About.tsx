@@ -12,7 +12,6 @@ const certificatesData = [
 
 export default function About() {
   const [showCerts, setShowCerts] = useState(false);
-  const [activeCert, setActiveCert] = useState(certificatesData[0]);
 
   return (
     <section id="about" className="py-24 px-4 bg-transparent flex flex-col items-center">
@@ -24,7 +23,7 @@ export default function About() {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center mb-16 text-center"
       >
-        <h2 className="text-3xl md:text-4xl font-bold  text-zinc-200 ">Who Am I?</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-zinc-200">Who Am I?</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
@@ -34,8 +33,8 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="col-span-1 md:col-span-2 bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="col-span-1 md:col-span-2 bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
         >
           <div className="flex items-center gap-3 mb-6">
             <BookOpen className="text-slate-500 dark:text-zinc-400" size={24} />
@@ -87,94 +86,76 @@ export default function About() {
           <p className="text-slate-500 dark:text-zinc-400">Bulacan, Philippines</p>
         </motion.div>
 
-        {/* 4. CERTIFICATES STRETCHED CARD */}
-        <motion.div
+        {/*
+        <motion.div //4. CERTIFICATES STRETCHED CARD
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
           className="col-span-1 md:col-span-2 w-full"
         >
-          {/* Main Toggle Button */}
-          <button
+        
+          <button //Main Toggle Button
             onClick={() => setShowCerts(!showCerts)}
-            className="w-full bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-black transition-colors cursor-pointer shadow-sm dark:shadow-none"
+            className="w-full bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-zinc-900 transition-colors cursor-pointer shadow-sm dark:shadow-none"
           >
             <div className="flex items-center gap-3">
               <Award className="text-slate-500 dark:text-zinc-400" size={24} />
               <h3 className="text-xl font-bold text-slate-800 dark:text-zinc-200">Certificates</h3>
             </div>
             {showCerts ? <ChevronUp className="text-slate-500 dark:text-zinc-400" /> : <ChevronDown className="text-slate-500 dark:text-zinc-400" />}
-          </button>
+          </button> 
 
-          {/* Expandable Folder Layout */}
           <AnimatePresence>
             {showCerts && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden mt-4"
-              >
-                {/* The Folder Tabs (Horizontal) */}
-                <div className="flex overflow-x-auto hide-scrollbar gap-1 px-4 border-b border-slate-200 dark:border-zinc-800 md:-translate-x-4">
-                  {certificatesData.map((cert) => {
-                    const isActive = activeCert.id === cert.id;
+                animate={{ 
+                  opacity: 1, 
+                  height: "auto", 
+                  transitionEnd: { overflow: "visible" } 
+                }}
+                exit={{ opacity: 0, height: 0, overflow: "hidden" }}
+                transition={{ duration: 0.4 }}
+                style={{ overflow: "hidden" }} 
+                className="w-full mt-6"
+              >  
+
+                <div className="flex flex-col gap-[35vh] md:gap-[45vh] pb-[10vh] relative">
+                  {certificatesData.map((cert, index) => { //sticky scroll stack
+                    // Offsets each card slightly down from the top so they stack like a physical deck
+                    const stickyTopOffset = 80 + (index * 20);
+
                     return (
-                      <button
+                      <div
                         key={cert.id}
-                        onClick={() => setActiveCert(cert)}
-                        className={`px-6 py-3 font-semibold text-sm whitespace-nowrap rounded-t-xl border-t border-x transition-colors ${
-                          isActive 
-                            ? "bg-slate-100 border-slate-200 text-slate-900 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white" 
-                            : "bg-white border-slate-100 text-slate-500 hover:text-slate-800 hover:bg-slate-50 dark:bg-black dark:border-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 dark:hover:bg-black"
-                        }`}
+                        style={{ top: `${stickyTopOffset}px` }}
+                        className="sticky w-full h-[60vh] md:h-[70vh] bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-3xl p-4 md:p-6 shadow-2xl flex flex-col items-center z-10 transition-colors"
                       >
-                        {cert.title}
-                      </button>
+                        <div className="w-full flex-1 rounded-2xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 mb-4 overflow-hidden flex items-center justify-center relative shadow-inner">
+                          {cert.image ? (
+                            <img src={cert.image} alt={cert.title} className="w-full h-full object-cover" />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center text-slate-400 dark:text-zinc-600">
+                              <ImageIcon size={48} className="mb-2 opacity-50 md:scale-125" />
+                              <p className="font-semibold tracking-wide text-xs md:text-sm mt-2">CERTIFICATE IMAGE</p>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="w-full text-center pb-2">
+                          <h4 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">{cert.title}</h4>
+                          <p className="text-slate-500 dark:text-zinc-400 text-sm md:text-base font-medium mt-1">Issued by {cert.issuer}</p>
+                        </div>
+                      </div>
                     );
                   })}
                 </div>
 
-                {/* The Folder Content Area */}
-                <div className="bg-slate-100 dark:bg-zinc-800 border-x border-b border-slate-200 dark:border-zinc-700 rounded-b-2xl p-6 md:p-8 flex flex-col items-center justify-center min-h-[300px]">
-                  
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeCert.id}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                      className="w-full flex flex-col items-center text-slate-800 dark:text-zinc-200"
-                    >
-                      {/* Image Placeholder Box */}
-                      <div className="w-full max-w-2xl aspect-[4/3] md:aspect-[16/9] border-2 border-dashed border-slate-300 dark:border-zinc-600 rounded-xl flex flex-col items-center justify-center bg-white/50 dark:bg-black/50 mb-4">
-                        {activeCert.image ? (
-                          <img 
-                            src={activeCert.image} 
-                            alt={activeCert.title} 
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                        ) : (
-                          <>
-                            <ImageIcon size={48} className="text-slate-400 dark:text-zinc-700 mb-2" />
-                            <p className="text-slate-500 dark:text-zinc-500 text-sm font-medium">Certificate Image Placeholder</p>
-                          </>
-                        )}
-                      </div>
-                      
-                      <h4 className="text-slate-900 dark:text-white font-bold text-lg">{activeCert.title}</h4>
-                      <p className="text-slate-500 dark:text-zinc-400 text-sm">Issued by {activeCert.issuer}</p>
-                    </motion.div>
-                  </AnimatePresence>
-
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.div>
+        </motion.div>  CERTIFICATES STRETCHED CARD */}
 
       </div>
     </section>

@@ -4,7 +4,7 @@
 /* This automatically applies your background, text colors, and fonts */
 @layer base {
   body {
-    background-color: #000000; /* Pure deep black background */
+    background-color: transparent; /* Pure deep black background */
     color: #e2e8f0; /* Soft slate color to prevent eye strain */
     font-family: var(--font-inter), sans-serif; /* Inter for all normal paragraphs */
   }

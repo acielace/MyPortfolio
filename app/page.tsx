@@ -10,7 +10,9 @@ import InteractiveBackground from "@/components/InteractiveBackground";
 export default function Home() {
   return (
     <main className="relative min-h-screen">
+      <div className="relative z-9">
       <InteractiveBackground />
+      </div>
       <div className="relative z-10">
       <Navbar /> {/* 2. Snap it onto the very top */}
       <Hero />
