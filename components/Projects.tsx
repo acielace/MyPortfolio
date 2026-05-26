@@ -121,7 +121,7 @@ export default function Projects() {
         viewport={{ once: true }}
         className="flex flex-col items-center mb-16 text-center px-4"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-900 dark:text-white">Featured Projects</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-3 text-zinc-200">Featured Projects</h2>
         {/* Dynamic subtitle based on whether the deck is stacked or dealt */}
         <p className="text-slate-500 dark:text-zinc-400 text-sm md:text-base transition-colors duration-300">
           {isStacked 

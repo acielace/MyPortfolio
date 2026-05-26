@@ -23,7 +23,7 @@ export default function About() {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center mb-16 text-center"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-zinc-200">Who Am I?</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-zinc-200">Who Am I?</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
@@ -34,11 +34,11 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="col-span-1 md:col-span-2 bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
+          className="col-span-1 md:col-span-2 dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
         >
           <div className="flex items-center gap-3 mb-6">
             <BookOpen className="text-slate-500 dark:text-zinc-400" size={24} />
-            <h3 className="text-2xl font-bold text-slate-800 dark:text-zinc-200">About Me</h3>
+            <h3 className="text-2xl font-bold">About Me</h3>
           </div>
           
           <blockquote className="border-l-4 border-slate-300 dark:border-zinc-500 pl-4 italic text-slate-700 dark:text-zinc-200 mb-6 text-xl md:text-2xl font-medium">
