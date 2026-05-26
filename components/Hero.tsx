@@ -80,7 +80,7 @@ export default function Hero() {
         </div>
 
         <motion.a
-          href="/Ace_Casera_Resume.pdf" 
+          href="../documents/CaseraResumeNoPic.pdf" 
           download="Ace_Casera_Resume.pdf" 
           whileHover={{ scale: 1.05 }}
           className="inline-flex items-center gap-2 bg-sky-500 text-black dark:text-white border-sky-500 px-6 py-3 rounded-full font-medium hover:bg-sky-400 transition-colors mx-auto md:mx-0 mb-6"
