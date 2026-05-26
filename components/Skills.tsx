@@ -60,7 +60,7 @@ export default function Skills() {
             setShowGrid(!showGrid);
             setActiveSkill(null); 
           }}
-          className="flex items-center gap-2 bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 px-5 py-2.5 rounded-full text-sm font-semibold hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-900 hover:border-slate-300 dark:hover:border-zinc-700 transition-colors cursor-pointer shadow-sm dark:shadow-md"
+          className="flex items-center gap-2 bg-black dark:bg-black border border-slate-200 dark:border-zinc-800 text-zinc-100 px-5 py-2.5 rounded-full text-sm font-semibold hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-900 hover:border-slate-300 dark:hover:border-zinc-700 transition-colors cursor-pointer shadow-sm dark:shadow-md"
         >
           {showGrid ? <Sparkles size={16} /> : <Grid size={16} />}
           <span>{showGrid ? "Activate Ticker Mode" : "Morph to Grid View"}</span>
@@ -72,7 +72,7 @@ export default function Skills() {
         <motion.div 
           layout="position"
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="relative w-full rounded-2xl border border-slate-200 dark:border-zinc-800 bg-slate-100/50 dark:bg-black/20 p-6 flex items-center overflow-hidden shadow-inner dark:shadow-none"
+          className="relative w-full rounded-2xl border border-slate-800 dark:border-zinc-800 bg-black-/20 dark:bg-black/20 p-6 flex items-center overflow-hidden shadow-inner dark:shadow-none"
         >
           <motion.div
             className={
@@ -103,12 +103,12 @@ export default function Skills() {
                   } ${
                     isSelected
                       ? "bg-sky-500 text-white border-sky-500 shadow-lg shadow-sky-500/20"
-                      : "bg-white dark:bg-black text-slate-700 dark:text-zinc-300 border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-black"
+                      : "bg-black dark:bg-black text-zinc-100 dark:text-zinc-100 border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50 dark:hover:bg-black"
                   }`}
                 >
                   <IconComponent 
                     size={showGrid ? 24 : 18} 
-                    className={isSelected ? "text-white" : "text-slate-500 dark:text-zinc-400"} 
+                    className={isSelected ? "text-white" : "text-slate-100 dark:text-zinc-100"} 
                   />
                   <span className={showGrid ? "text-sm md:text-base font-medium" : "text-base"}>
                     {skill.name}
@@ -130,12 +130,12 @@ export default function Skills() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="w-full bg-white/80 dark:bg-black/50 border border-slate-200 dark:border-zinc-800/80 rounded-2xl p-6 text-center md:text-left shadow-xl backdrop-blur-sm"
+              className="w-full bg-black/50 dark:bg-black/50 border border-slate-200 dark:border-zinc-800/80 rounded-2xl p-6 text-center md:text-left shadow-xl backdrop-blur-sm"
             >
-              <h3 className="text-lg font-bold text-slate-800 dark:text-zinc-200 mb-2 tracking-wide uppercase">
+              <h3 className="text-lg font-bold text-zinc-100 dark:text-zinc-200 mb-2 tracking-wide uppercase">
                 {activeSkill.name} Application
               </h3>
-              <p className="text-slate-600 dark:text-zinc-400 leading-relaxed text-sm md:text-base">
+              <p className="text-zinc-100 dark:text-zinc-100 leading-relaxed text-sm md:text-base">
                 {activeSkill.desc}
               </p>
             </motion.div>

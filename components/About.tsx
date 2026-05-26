@@ -34,18 +34,18 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="col-span-1 md:col-span-2 dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
+          className="col-span-1 md:col-span-2 bg-black dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
         >
           <div className="flex items-center gap-3 mb-6">
             <BookOpen className="text-slate-500 dark:text-zinc-400" size={24} />
-            <h3 className="text-2xl font-bold">About Me</h3>
+            <h3 className="text-2xl font-bold text-zinc-100">About Me</h3>
           </div>
           
-          <blockquote className="border-l-4 border-slate-300 dark:border-zinc-500 pl-4 italic text-slate-700 dark:text-zinc-200 mb-6 text-xl md:text-2xl font-medium">
+          <blockquote className="border-l-4 border-slate-300 dark:border-zinc-500 pl-4 italic text-zinc-100 mb-6 text-xl md:text-2xl font-medium">
             “Creating digital experiences that feel as good as they function.”
           </blockquote>
           
-          <div className="text-slate-600 dark:text-zinc-400 leading-relaxed text-lg space-y-4">
+          <div className="text-zinc-100 leading-relaxed text-lg space-y-4">
             <p>
               I am a Full-Stack and Creative Developer dedicated to blending clean logic with high-fidelity aesthetics. My foundation spans modern web technologies like React, Next.js, and Node.js, but my true passion lies at the intersection of web development and Artificial Intelligence.
             </p>
@@ -61,13 +61,13 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 flex flex-col justify-center items-center text-center hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
+          className="bg-black dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 flex flex-col justify-center items-center text-center hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
         >
           <GraduationCap className="text-slate-500 dark:text-zinc-400 mb-4" size={40} />
-          <h3 className="text-xl font-bold mb-3 text-slate-800 dark:text-zinc-200">Education</h3>
-          <p className="text-slate-700 dark:text-zinc-200 font-medium text-lg">B.S. Computer Science</p>
-          <p className="text-slate-500 dark:text-zinc-400 mb-2">ICI College</p>
-          <span className="bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-300 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-2">
+          <h3 className="text-xl font-bold mb-3 text-zinc-100">Education</h3>
+          <p className="text-zinc-100 font-medium text-lg">B.S. Computer Science</p>
+          <p className="text-zinc-100 mb-2">ICI College</p>
+          <span className="bg-slate-100 dark:bg-zinc-800 text-zinc-100 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mt-2">
             3rd Year Student
           </span>
         </motion.div>
@@ -78,12 +78,12 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 flex flex-col justify-center items-center text-center hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
+          className="bg-black dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-8 flex flex-col justify-center items-center text-center hover:bg-slate-50 dark:hover:bg-black/50 transition-colors shadow-sm dark:shadow-none"
         >
           <MapPin className="text-slate-500 dark:text-zinc-400 mb-4" size={40} />
-          <h3 className="text-xl font-bold mb-3 text-slate-800 dark:text-zinc-200">Location</h3>
-          <p className="text-slate-700 dark:text-zinc-200 font-medium text-lg">City of San Jose Del Monte</p>
-          <p className="text-slate-500 dark:text-zinc-400">Bulacan, Philippines</p>
+          <h3 className="text-xl font-bold mb-3 text-zinc-100">Location</h3>
+          <p className="text-zinc-100 font-medium text-lg">City of San Jose Del Monte</p>
+          <p className="text-zinc-100">Bulacan, Philippines</p>
         </motion.div>
 
         {/*
