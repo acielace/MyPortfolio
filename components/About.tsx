@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, MapPin, GraduationCap, Award, ChevronDown, ChevronUp, Image as ImageIcon } from "lucide-react";
 
 const certificatesData = [
-  { id: 1, title: "Full-Stack Web Dev", issuer: "Bootcamp", image: "" },
-  { id: 2, title: "Machine Learning Basics", issuer: "Online Course", image: "" },
-  { id: 3, title: "UI/UX Foundations", issuer: "Design Institute", image: "" }
+  { id: 1, title: "AI Fundamentals", issuer: "Cisco Networking Academy", image: "/projectimages/Certificates/AI_Fundamentals-_Language_and_Vision_in_AI-1.png" },
+  { id: 2, title: "Azure Fundamentals", issuer: "Simplilearn", image: "/projectimages/Certificates/Azure Fundamentals-1.png" },
+  { id: 3, title: "Introduction to Cloud Computing", issuer: "Simplilearn", image: "/projectimages/Certificates/Introduction to Cloud Computing-1.png" }
 ];
 
 export default function About() {
@@ -42,7 +42,7 @@ export default function About() {
           </div>
           
           <blockquote className="border-l-4 border-slate-300 dark:border-zinc-500 pl-4 italic text-zinc-100 mb-6 text-xl md:text-2xl font-medium">
-            “Creating digital experiences that feel as good as they function.”
+            "Creating digital experiences that feel as good as they function."
           </blockquote>
           
           <div className="text-zinc-100 leading-relaxed text-lg space-y-4">
@@ -86,16 +86,22 @@ export default function About() {
           <p className="text-zinc-100">Bulacan, Philippines</p>
         </motion.div>
 
+        {/* 4. CERTIFICATES STRETCHED CARD */}
         {/*
-        <motion.div //4. CERTIFICATES STRETCHED CARD
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          IMPORTANT: This outer wrapper only animates opacity, never x/y/scale/rotate.
+          Any animated "transform" on an ancestor breaks position:sticky for the
+          cards below it (browsers create a new containing block), which is why
+          the stack wasn't working before.
+        */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
           className="col-span-1 md:col-span-2 w-full"
         >
         
-          <button //Main Toggle Button
+          <button
             onClick={() => setShowCerts(!showCerts)}
             className="w-full bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-2xl p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-zinc-900 transition-colors cursor-pointer shadow-sm dark:shadow-none"
           >
@@ -108,21 +114,21 @@ export default function About() {
 
           <AnimatePresence>
             {showCerts && (
+              // NOTE: no height/overflow animation here on purpose. Animating
+              // height 0->auto and toggling overflow hidden->visible is what
+              // was breaking position:sticky below. We just fade this block
+              // in/out; the browser handles layout normally from the start,
+              // which is what sticky needs to compute correctly.
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ 
-                  opacity: 1, 
-                  height: "auto", 
-                  transitionEnd: { overflow: "visible" } 
-                }}
-                exit={{ opacity: 0, height: 0, overflow: "hidden" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                style={{ overflow: "hidden" }} 
                 className="w-full mt-6"
               >  
 
                 <div className="flex flex-col gap-[35vh] md:gap-[45vh] pb-[10vh] relative">
-                  {certificatesData.map((cert, index) => { //sticky scroll stack
+                  {certificatesData.map((cert, index) => {
                     // Offsets each card slightly down from the top so they stack like a physical deck
                     const stickyTopOffset = 80 + (index * 20);
 
@@ -130,11 +136,19 @@ export default function About() {
                       <div
                         key={cert.id}
                         style={{ top: `${stickyTopOffset}px` }}
-                        className="sticky w-full h-[60vh] md:h-[70vh] bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-3xl p-4 md:p-6 shadow-2xl flex flex-col items-center z-10 transition-colors"
+                        className="sticky w-full max-w-2xl mx-auto bg-white dark:bg-black border border-slate-200 dark:border-zinc-800 rounded-3xl p-4 md:p-6 shadow-2xl flex flex-col items-center z-10 transition-colors"
                       >
-                        <div className="w-full flex-1 rounded-2xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 mb-4 overflow-hidden flex items-center justify-center relative shadow-inner">
+                        {/* aspect-[4/3] matches typical landscape certificate
+                            proportions, so object-contain shows the full image
+                            with minimal side letterboxing (instead of a tall
+                            near-square box that padded the sides heavily). */}
+                        <div className="w-full aspect-[4/3] rounded-2xl bg-black/40 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 mb-4 overflow-hidden flex items-center justify-center relative shadow-inner">
                           {cert.image ? (
-                            <img src={cert.image} alt={cert.title} className="w-full h-full object-cover" />
+                            <img
+                              src={cert.image}
+                              alt={cert.title}
+                              className="w-full h-full object-contain"
+                            />
                           ) : (
                             <div className="flex flex-col items-center justify-center text-slate-400 dark:text-zinc-600">
                               <ImageIcon size={48} className="mb-2 opacity-50 md:scale-125" />
@@ -155,7 +169,7 @@ export default function About() {
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.div>  CERTIFICATES STRETCHED CARD */}
+        </motion.div>
 
       </div>
     </section>
